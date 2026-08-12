@@ -1,0 +1,213 @@
+{
+  "session_id": "2026-08-12-d309",
+  "project_name": "_REST_API_Project",
+  "objective": "# REST API Project — Autonomous Development Prompt\n\nYou are an expert backend engineer and software architect.\n\nYour task is to **analyze, design, implement, test, and document a complete production-quality REST API project**.\n\nDo not immediately start writing code. First understand the requirements, identify the architecture, determine the necessary components, and then implement the project systematically.\n\n## 1. Project Goal\n\nBuild a complete RESTful API for:\n\n**[DESCRIBE YOUR PROJECT IDEA HERE]**\n\nThe API should be realistic, well-structured, scalable, secure, maintainable, and suitable as a serious B.Tech/portfolio project.\n\n## 2. Development Process\n\nFollow this workflow:\n\n### Phase 1 — Analyze\n\n* Understand the project requirements.\n* Identify the main entities/resources.\n* Identify relationships between entities.\n* Determine required API operations.\n* Identify authentication and authorization requirements.\n* Identify validation requirements.\n* Identify possible security risks.\n* Identify edge cases and failure scenarios.\n* Identify what should be configurable through environment variables.\n\nBefore implementation, create a concise technical plan.\n\n### Phase 2 — Architecture\n\nDesign a clean backend architecture using appropriate separation of concerns.\n\nConsider:\n\n* Routes\n* Controllers\n* Services\n* Models/entities\n* Repository/data-access layer\n* Middleware\n* Authentication\n* Authorization\n* Validation\n* Error handling\n* Logging\n* Configuration\n* Database\n* Testing\n\nUse the architecture that best fits the chosen technology stack rather than unnecessarily overengineering the project.\n\n## 3. Technology Selection\n\nChoose an appropriate modern technology stack.\n\nPrefer one of:\n\n* Node.js + TypeScript + Express/Fastify\n* Python + FastAPI\n* Java + Spring Boot\n* Go + Gin/Fiber\n\nChoose the stack based on the project requirements and explain the choice briefly.\n\nUse a proper relational database such as PostgreSQL when relational data is appropriate.\n\n## 4. REST API Design\n\nFollow proper REST principles.\n\nDefine:\n\n* Resources\n* HTTP methods\n* Routes\n* Request parameters\n* Request bodies\n* Response formats\n* HTTP status codes\n* Pagination\n* Filtering\n* Sorting\n* Searching where appropriate\n\nUse consistent JSON responses.\n\nFor example:\n\n```json\n{\n  \"success\": true,\n  \"data\": {},\n  \"message\": \"Operation successful\"\n}\n```\n\nErrors should also have a consistent structure.\n\n## 5. Authentication & Security\n\nIf authentication is relevant, implement it properly.\n\nConsider:\n\n* Password hashing\n* JWT or secure session-based authentication\n* Access/refresh tokens where appropriate\n* Role-based authorization\n* Input validation\n* Rate limiting\n* CORS configuration\n* Secure HTTP headers\n* SQL/NoSQL injection prevention\n* Authentication brute-force protection\n* Sensitive-data protection\n* Proper secret management\n* Environment variables\n\nNever hard-code passwords, API keys, tokens, or database credentials.\n\n## 6. Database\n\nDesign the database schema before implementation.\n\nDetermine:\n\n* Tables/entities\n* Primary keys\n* Foreign keys\n* Relationships\n* Indexes\n* Constraints\n* Unique fields\n* Required fields\n* Timestamps\n\nUse migrations rather than manually creating the database schema.\n\nAdd seed/demo data if useful.\n\n## 7. API Documentation\n\nProvide complete API documentation.\n\nUse **OpenAPI/Swagger** where supported.\n\nDocument:\n\n* Every endpoint\n* Authentication requirements\n* Parameters\n* Request bodies\n* Response examples\n* Error responses\n* Status codes\n\nAlso create a useful README explaining how to run and use the API.\n\n## 8. Testing\n\nDo not consider the project complete until it has been tested.\n\nCreate tests for:\n\n* Authentication\n* Authorization\n* CRUD operations\n* Validation\n* Error handling\n* Database interactions\n* Important edge cases\n\nInclude integration/API tests where appropriate.\n\nThe project should have a simple command such as:\n\n```bash\nnpm test\n```\n\nor the equivalent for the selected stack.\n\n## 9. Developer Experience\n\nProvide:\n\n* `.env.example`\n* Proper `.gitignore`\n* Package/dependency configuration\n* Database migration commands\n* Seed commands if applicable\n* Development commands\n* Production build commands\n* Docker support if useful\n* API documentation\n* Example API requests\n\nMake the project easy for another developer to clone and run.\n\n## 10. Code Quality\n\nWrite clean, readable, maintainable code.\n\nFollow the conventions of the selected language/framework.\n\nAvoid:\n\n* Giant files\n* Duplicated logic\n* Hard-coded configuration\n* Unnecessary abstractions\n* Dead code\n* Unused dependencies\n* Poor naming\n* Silent error handling\n\nUse meaningful names and comments only where they add value.\n\n## 11. Error Handling\n\nImplement centralized error handling.\n\nHandle:\n\n* Invalid input\n* Missing resources\n* Authentication failures\n* Authorization failures\n* Database errors\n* Invalid routes\n* Unexpected server errors\n\nReturn appropriate HTTP status codes such as:\n\n* `200`\n* `201`\n* `204`\n* `400`\n* `401`\n* `403`\n* `404`\n* `409`\n* `422`\n* `429`\n* `500`\n\nDo not expose internal stack traces or sensitive implementation details in production responses.\n\n## 12. Project Structure\n\nChoose a clean project structure appropriate for the selected framework.\n\nFor example:\n\n```text\nproject/\n├── src/\n│   ├── routes/\n│   ├── controllers/\n│   ├── services/\n│   ├── models/\n│   ├── middleware/\n│   ├── validators/\n│   ├── config/\n│   ├── utils/\n│   └── app.*\n├── tests/\n├── migrations/\n├── .env.example\n├── .gitignore\n├── README.md\n└── package/config files\n```\n\nAdapt this structure if another architecture is more appropriate.\n\n## 13. Autonomous Execution\n\nYou are allowed to:\n\n* Create files\n* Modify files\n* Install required dependencies\n* Create the database schema\n* Run migrations\n* Run tests\n* Run linters/formatters\n* Start the development server\n* Inspect errors\n* Debug problems\n* Refactor the implementation\n\nWhen something fails:\n\n1. Inspect the error.\n2. Determine the root cause.\n3. Fix it.\n4. Re-run the relevant test/command.\n5. Continue until the issue is resolved.\n\nDo not stop at the first error.\n\nDo not repeatedly ask for permission for routine development operations if your execution environment already permits them.\n\n## 14. Quality Gate\n\nBefore declaring the project complete, verify:\n\n* [ ] API starts successfully\n* [ ] Database connects successfully\n* [ ] Migrations work\n* [ ] Authentication works\n* [ ] Authorization works where required\n* [ ] CRUD operations work\n* [ ] Validation works\n* [ ] Error handling works\n* [ ] Tests pass\n* [ ] Linting/formatting passes\n* [ ] Swagger/OpenAPI documentation works\n* [ ] README contains setup instructions\n* [ ] No secrets are committed\n* [ ] No obvious security vulnerabilities remain\n* [ ] Project can be run from a clean environment\n\n## 15. Final Deliverables\n\nAt the end, provide:\n\n1. Final project structure\n2. Technology stack\n3. Database design\n4. API endpoint list\n5. Authentication design\n6. Security measures\n7. How to run the project\n8. How to run tests\n9. Example API requests\n10. Known limitations\n11. Possible future improvements\n\nMost importantly:\n\n**Think → Plan → Implement → Test → Debug → Verify → Document.**\n\nDo not merely generate a collection of API endpoints. Build a complete, coherent, working REST API project that demonstrates good backend engineering practices.\n",
+  "tasks": [
+    {
+      "id": "T001",
+      "title": "Project Initialization and Architecture Setup",
+      "description": "Initialize a Node.js + TypeScript + Express project. Configure ESLint, Prettier, and environment variables. Set up the basic Express server and database connection configuration (e.g., PostgreSQL using Prisma or TypeORM).",
+      "status": "Pending",
+      "assigned_agent": "agy",
+      "capabilities_required": {},
+      "token_budget": null,
+      "dependencies": [],
+      "process_id": null,
+      "start_time": null,
+      "end_time": null,
+      "exit_code": null,
+      "token_usage": null,
+      "workspace": null,
+      "prompt_file": null,
+      "output_file": null,
+      "expected_outputs": [
+        "package.json",
+        "tsconfig.json",
+        "src/app.ts",
+        "src/config/database.ts",
+        ".env.example"
+      ],
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "id": "T002",
+      "title": "Database Schema and Migrations",
+      "description": "Design and implement the database schema for the REST API (assuming a Task Management system with Users and Tasks). Set up the ORM models, relationships, and generate initial database migrations.",
+      "status": "Pending",
+      "assigned_agent": "agy",
+      "capabilities_required": {},
+      "token_budget": null,
+      "dependencies": [
+        "T001"
+      ],
+      "process_id": null,
+      "start_time": null,
+      "end_time": null,
+      "exit_code": null,
+      "token_usage": null,
+      "workspace": null,
+      "prompt_file": null,
+      "output_file": null,
+      "expected_outputs": [
+        "prisma/schema.prisma",
+        "src/models/index.ts"
+      ],
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "id": "T003",
+      "title": "Authentication and Security Implementation",
+      "description": "Implement secure user authentication using JWT and bcrypt for password hashing. Create authentication middleware, implement rate limiting, and configure secure HTTP headers (Helmet/CORS). Ensure proper protection against common vulnerabilities.",
+      "status": "Pending",
+      "assigned_agent": "codex",
+      "capabilities_required": {},
+      "token_budget": null,
+      "dependencies": [
+        "T002"
+      ],
+      "process_id": null,
+      "start_time": null,
+      "end_time": null,
+      "exit_code": null,
+      "token_usage": null,
+      "workspace": null,
+      "prompt_file": null,
+      "output_file": null,
+      "expected_outputs": [
+        "src/controllers/auth.controller.ts",
+        "src/services/auth.service.ts",
+        "src/middleware/auth.middleware.ts",
+        "src/utils/jwt.util.ts"
+      ],
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "id": "T004",
+      "title": "Core Resource API Endpoints",
+      "description": "Implement the core CRUD REST endpoints for the primary resources (e.g., Tasks). Include support for pagination, filtering, sorting, and ensure proper separation of concerns (Routes -> Controllers -> Services).",
+      "status": "Pending",
+      "assigned_agent": "agy",
+      "capabilities_required": {},
+      "token_budget": null,
+      "dependencies": [
+        "T003"
+      ],
+      "process_id": null,
+      "start_time": null,
+      "end_time": null,
+      "exit_code": null,
+      "token_usage": null,
+      "workspace": null,
+      "prompt_file": null,
+      "output_file": null,
+      "expected_outputs": [
+        "src/routes/task.routes.ts",
+        "src/controllers/task.controller.ts",
+        "src/services/task.service.ts"
+      ],
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "id": "T005",
+      "title": "Validation and Centralized Error Handling",
+      "description": "Implement centralized error handling middleware to format consistent JSON error responses. Implement request body and parameter validation using a library like Zod or Joi to validate all incoming API requests.",
+      "status": "Pending",
+      "assigned_agent": "codex",
+      "capabilities_required": {},
+      "token_budget": null,
+      "dependencies": [
+        "T004"
+      ],
+      "process_id": null,
+      "start_time": null,
+      "end_time": null,
+      "exit_code": null,
+      "token_usage": null,
+      "workspace": null,
+      "prompt_file": null,
+      "output_file": null,
+      "expected_outputs": [
+        "src/middleware/error.middleware.ts",
+        "src/validators/auth.validator.ts",
+        "src/validators/task.validator.ts",
+        "src/utils/customError.ts"
+      ],
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "id": "T006",
+      "title": "Automated Testing",
+      "description": "Set up a testing framework (e.g., Jest and Supertest). Write comprehensive integration and unit tests for authentication, authorization, CRUD operations, and error handling edge cases.",
+      "status": "Pending",
+      "assigned_agent": "agy",
+      "capabilities_required": {},
+      "token_budget": null,
+      "dependencies": [
+        "T005"
+      ],
+      "process_id": null,
+      "start_time": null,
+      "end_time": null,
+      "exit_code": null,
+      "token_usage": null,
+      "workspace": null,
+      "prompt_file": null,
+      "output_file": null,
+      "expected_outputs": [
+        "jest.config.js",
+        "tests/auth.test.ts",
+        "tests/task.test.ts",
+        "tests/error.test.ts"
+      ],
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "id": "T007",
+      "title": "API Documentation and Developer Experience",
+      "description": "Generate OpenAPI/Swagger documentation for all endpoints. Write a comprehensive README.md detailing how to set up, configure, run, and test the API. Ensure Docker support is included by providing necessary configuration files.",
+      "status": "Pending",
+      "assigned_agent": "agy",
+      "capabilities_required": {},
+      "token_budget": null,
+      "dependencies": [
+        "T006"
+      ],
+      "process_id": null,
+      "start_time": null,
+      "end_time": null,
+      "exit_code": null,
+      "token_usage": null,
+      "workspace": null,
+      "prompt_file": null,
+      "output_file": null,
+      "expected_outputs": [
+        "src/docs/swagger.ts",
+        "README.md",
+        "Dockerfile",
+        "docker-compose.yml"
+      ],
+      "result": null,
+      "error": null,
+      "logs": []
+    }
+  ],
+  "agents_used": [
+    "agy",
+    "codex"
+  ],
+  "started_at": "2026-08-12T18:15:00.593297347+05:30",
+  "updated_at": "2026-08-12T18:15:00.593297347+05:30",
+  "phase": "Planning"
+}

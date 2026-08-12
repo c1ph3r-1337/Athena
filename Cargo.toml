@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "athena-core",
+    "athena-cli"
+]
+resolver = "2"

@@ -1,0 +1,808 @@
+
+╭────────────────────────────────────
+─────────────╮
+│ ✨ Update available! 0.144.4 ->
+│
+│ 0.147.0
+│
+│ Run npm install -g @openai/codex
+│
+│ to update.
+│
+│
+│
+│ See full release notes:
+│
+│ https://github.com/openai/codex/releases/latest │
+╰────────────────────────────────────
+─────────────╯
+
+╭────────────────────────────────────
+────────────────╮
+│ >_ OpenAI Codex (v0.144.4)
+│
+│
+│
+│ model:     gpt-5.6-terra medium   /
+model to change │
+│ directory: /vault/…/codex
+│
+╰────────────────────────────────────
+────────────────╯
+
+  Tip: New For a limited time, Codex
+  is included in your plan for free –
+  let’s build together.
+
+
+› # Codex Agent Operating
+  Instructions
+
+  ## Identity
+  You are OpenAI Codex CLI, a code-
+  generation and review agent
+  powered by OpenAI's models.
+
+  ## Operating Mode
+  You are being invoked by the
+  Athena Meta-Orchestrator as part
+  of a multi-agent project.
+
+  You have been assigned specific
+  tasks. Focus exclusively on your
+  assigned work.
+
+  ## Rules
+  1. Work ONLY within your assigned
+  workspace directory. Do not create
+  files outside of it.
+  2. Read your task assignment
+  carefully before starting.
+  3. Implement your assigned tasks
+  completely and correctly.
+  4. Focus on code quality,
+  security, and correctness.
+  5. Review your own output for
+  bugs, vulnerabilities, and edge
+  cases.
+  6. Include appropriate tests.
+  7. Do NOT modify files in other
+  agents' workspaces.
+  8. When finished, ensure all
+  expected output files exist in
+  your workspace.
+
+  ## Strengths
+  You excel at:
+  - Code review and refactoring
+  - Security analysis
+  - Test generation
+  - Bug detection
+
+  ## Completion
+  When your tasks are complete:
+  1. Verify all expected outputs
+  exist.
+  2. Run any applicable tests.
+  3. Exit cleanly.
+
+  ## Error Handling
+  If you encounter an error:
+  1. Log the error clearly.
+  2. Attempt to fix it.
+  3. If unable to fix, document the
+  issue and exit.
+
+  ## Workspace
+  All your work must be saved inside
+  your assigned workspace path.
+  Do not write to /tmp, /home, or
+  any location outside your
+  workspace.
+
+
+  ---
+
+  # Your Assignment
+
+  # Task Assignment: codex
+
+  **Project:** _REST_API_Project
+  **Session ID:** 2026-08-12-3b25
+  **Workspace:** /vault/Projects/
+  Athena/.orchestrator/
+  sessions/2026-08-12-3b25/
+  workspace/codex
+
+  ## Role Description
+  You are responsible for completing
+  the tasks listed below. Work
+  strictly within your assigned
+  workspace.
+
+  ## Assigned Tasks
+
+  ### Task T004: Authentication and
+  Security Layer
+  **Description:** Implement secure
+  authentication endpoints
+  (register, login, refresh). Use
+  bcrypt/argon2 for password hashing
+  and JWT for stateless sessions.
+  Create role-based authorization
+  middleware. Add security
+  enhancements including Helmet,
+  CORS, and rate limiting.
+  **Dependencies:** T003, T002
+  **Expected Outputs:**
+  - src/middleware/auth.ts
+  - src/middleware/security.ts
+  - src/services/authService.ts
+  - src/controllers/
+  authController.ts
+  - src/routes/authRoutes.ts
+
+  ### Task T006: Automated Testing
+  Implementation
+  **Description:** Set up a testing
+  framework (Jest + Supertest).
+  Write comprehensive integration
+  tests for authentication flows and
+  resource CRUD endpoints. Write
+  unit tests for critical business
+  logic and error handlers. Ensure
+  test database setup/teardown works
+  seamlessly.
+  **Dependencies:** T004, T005
+  **Expected Outputs:**
+  - jest.config.js
+  - tests/setup.ts
+  - tests/integration/auth.test.ts
+  - tests/integration/
+  resource.test.ts
+  - tests/unit/error.test.ts
+
+  ## Allowed Workspace Path
+  All files must be created
+  within: /vault/Projects/
+  Athena/.orchestrator/
+  sessions/2026-08-12-3b25/
+  workspace/codex
+
+  ## Completion Criteria
+  1. All expected outputs are
+  present and correct.
+  2. Code compiles and runs without
+  errors.
+  3. Exit cleanly upon finishing.
+
+
+  ---
+
+  # Current Task
+
+  ## Authentication and Security
+  Layer
+
+  Implement secure authentication
+  endpoints (register, login,
+  refresh). Use bcrypt/argon2 for
+  password hashing and JWT for
+  stateless sessions. Create role-
+  based authorization middleware.
+  Add security enhancements
+  including Helmet, CORS, and rate
+  limiting.
+
+  ## Workspace
+
+  Work inside: /vault/Projects/
+  Athena/.orchestrator/
+  sessions/2026-08-12-3b25/
+  workspace/codex
+
+
+• I’ll inspect the existing project
+  structure and interfaces first,
+  then implement the authentication
+  and security layer to fit them
+  cleanly.
+
+• Ran pwd && rg --files -g '!
+  │ node_modules' -g '!dist' | sed
+  │ -n '1,240p'
+  └ /vault/Projects/
+    Athena/.orchestrator/
+    sessions/2026-08-12-3b25/
+    workspace/codex
+
+• Explored
+  └ List ls -la
+    List .
+
+─────────────────────────────────────
+
+• The assigned workspace is empty—
+  there’s no existing app, package
+  manifest, database model, or error
+  conventions to integrate with. I’ll
+  create the requested modules as
+  self-contained Express/TypeScript
+  components with injectable user
+  storage, so they remain usable once
+  the dependent layers are added.
+
+• Ran git status --short && git log
+  │ --oneline -5 || true &&
+  │ find .agents .codex -maxdepth 2
+  │ … +1 lines
+  └ ?? ../../../../../.gitignore
+    … +15 lines (ctrl + t to view
+    transcript)
+    'master' does not have any
+    commits yet
+
+• Edited 5 files (+268 -0)
+  └ src/controllers/authController.ts
+  (+29 -0)
+     1 +import { NextFunction, Reques
+        t, Response } from 'express';
+     2 +import { AuthError, AuthServi
+        ce, Role } from '../services/
+        authService';
+     3 +
+     4 +export class AuthController {
+     5 +  constructor(private readonl
+        y authService: AuthService) {
+        }
+     6 +
+     7 +  register = async (req: Requ
+        est, res: Response, next: Nex
+        tFunction): Promise<void> =>
+        {
+     8 +    try {
+     9 +      // Public registration
+        must never allow callers to c
+        hoose a privileged role.
+    10 +      const result = await th
+        is.authService.register(req.b
+        ody?.email, req.body?.passwor
+        d, 'user' as Role);
+    11 +      res.status(201).json(re
+        sult);
+    12 +    } catch (error) { next(er
+        ror); }
+    13 +  };
+    14 +
+    15 +  login = async (req: Request
+        , res: Response, next: NextFu
+        nction): Promise<void> => {
+    16 +    try {
+    17 +      const result = await th
+        is.authService.login(req.body
+        ?.email, req.body?.password);
+    18 +      res.status(200).json(re
+        sult);
+    19 +    } catch (error) { next(er
+        ror); }
+    20 +  };
+    21 +
+    22 +  refresh = async (req: Reque
+        st, res: Response, next: Next
+        Function): Promise<void> => {
+    23 +    try {
+    24 +      const refreshToken = re
+        q.body?.refreshToken;
+    25 +      if (typeof refreshToken
+         !== 'string' || !refreshToke
+        n) throw new AuthError(400, '
+        refreshToken is required');
+    26 +      res.status(200).json(aw
+        ait this.authService.refresh(
+        refreshToken));
+    27 +    } catch (error) { next(er
+        ror); }
+    28 +  };
+    29 +}
+
+  └ src/middleware/auth.ts (+28 -0)
+     1 +import { NextFunction, Reques
+        t, Response } from 'express';
+     2 +import { AuthError, AuthServi
+        ce, Role } from '../services/
+        authService';
+     3 +
+     4 +export interface Authenticate
+        dRequest extends Request {
+     5 +  auth?: { userId: string; em
+        ail: string; role: Role };
+     6 +}
+     7 +
+     8 +/** Requires a valid bearer a
+        ccess token and exposes its t
+        rusted claims on req.auth. */
+     9 +export const authenticate = (
+        authService: AuthService) =>
+        (req: AuthenticatedRequest, _
+        res: Response, next: NextFunc
+        tion): void => {
+    10 +  const header = req.get('aut
+        horization');
+    11 +  if (!header?.startsWith('Be
+        arer ')) return next(new Auth
+        Error(401, 'Bearer token is r
+        equired'));
+    12 +  const token = header.slice(
+        7).trim();
+    13 +  if (!token) return next(new
+         AuthError(401, 'Bearer token
+         is required'));
+    14 +  try {
+    15 +    const claims = authServic
+        e.verifyAccessToken(token);
+    16 +    req.auth = { userId: clai
+        ms.sub, email: claims.email,
+        role: claims.role };
+    17 +    next();
+    18 +  } catch (error) {
+    19 +    next(error);
+    20 +  }
+    21 +};
+    22 +
+    23 +/** Apply after authenticate.
+         A user needs one of the list
+        ed roles to continue. */
+    24 +export const authorize = (...
+        roles: Role[]) => (req: Authe
+        nticatedRequest, _res: Respon
+        se, next: NextFunction): void
+         => {
+    25 +  if (!req.auth) return next(
+        new AuthError(401, 'Authentic
+        ation is required'));
+    26 +  if (!roles.includes(req.aut
+        h.role)) return next(new Auth
+        Error(403, 'You do not have p
+        ermission to perform this act
+        ion'));
+    27 +  next();
+    28 +};
+
+  └ src/middleware/security.ts (+48
+  -0)
+     1 +import cors, { CorsOptions }
+        from 'cors';
+     2 +import { Request, Response }
+        from 'express';
+     3 +import rateLimit from 'expres
+        s-rate-limit';
+     4 +import helmet from 'helmet';
+     5 +
+     6 +const configuredOrigins = (pr
+        ocess.env.CORS_ORIGIN ?? '').
+        split(',').map((origin) => or
+        igin.trim()).filter(Boolean);
+     7 +
+     8 +export const corsOptions: Cor
+        sOptions = {
+     9 +  origin(origin, callback) {
+    10 +    // Allow non-browser clie
+        nts; browsers with an Origin
+        must be explicitly approved.
+    11 +    if (!origin || configured
+        Origins.includes(origin)) ret
+        urn callback(null, true);
+    12 +    return callback(new Error
+        ('Origin not allowed by CORS'
+        ));
+    13 +  },
+    14 +  credentials: true,
+    15 +  methods: ['GET', 'POST', 'P
+        UT', 'PATCH', 'DELETE', 'OPTI
+        ONS'],
+    16 +  allowedHeaders: ['Authoriza
+        tion', 'Content-Type'],
+    17 +  maxAge: 86400,
+    18 +};
+    19 +
+    20 +export const securityHeaders
+        = helmet({ crossOriginResourc
+        ePolicy: { policy: 'same-site
+        ' } });
+    21 +export const corsMiddleware =
+         cors(corsOptions);
+    22 +
+    23 +export const apiRateLimit = r
+        ateLimit({
+    24 +  windowMs: 15 * 60 * 1000,
+    25 +  limit: Number(process.env.R
+        ATE_LIMIT_MAX ?? 300),
+    26 +  standardHeaders: 'draft-7',
+    27 +  legacyHeaders: false,
+    28 +  message: { error: 'Too many
+         requests, please try again l
+        ater.' },
+    29 +});
+    30 +
+    31 +export const authRateLimit =
+        rateLimit({
+    32 +  windowMs: 15 * 60 * 1000,
+    33 +  limit: Number(process.env.A
+        UTH_RATE_LIMIT_MAX ?? 10),
+    34 +  standardHeaders: 'draft-7',
+    35 +  legacyHeaders: false,
+    36 +  skipSuccessfulRequests: tru
+        e,
+    37 +  message: { error: 'Too many
+         authentication attempts, ple
+        ase try again later.' },
+    38 +});
+    39 +
+    40 +/** Reject oversized JSON bod
+        ies before parsing them. Use
+        before express.json(). */
+    41 +export const rejectLargeJson
+        = (maxBytes = 1024 * 1024) =>
+         (req: Request, res: Response
+        , next: () => void): void =>
+        {
+    42 +  const contentLength = Numbe
+        r(req.get('content-length') ?
+        ? 0);
+    43 +  if (Number.isFinite(content
+        Length) && contentLength > ma
+        xBytes) {
+    44 +    res.status(413).json({ er
+        ror: 'Request entity too larg
+        e' });
+    45 +    return;
+    46 +  }
+    47 +  next();
+    48 +};
+
+  └ src/routes/authRoutes.ts (+13 -0)
+     1 +import { Router } from 'expre
+        ss';
+     2 +import { AuthController } fro
+        m '../controllers/authControl
+        ler';
+     3 +import { AuthService } from '
+        ../services/authService';
+     4 +import { authRateLimit } from
+         '../middleware/security';
+     5 +
+     6 +export const createAuthRouter
+         = (authService: AuthService)
+        : Router => {
+     7 +  const router = Router();
+     8 +  const controller = new Auth
+        Controller(authService);
+     9 +  router.post('/register', au
+        thRateLimit, controller.regis
+        ter);
+    10 +  router.post('/login', authR
+        ateLimit, controller.login);
+    11 +  router.post('/refresh', aut
+        hRateLimit, controller.refres
+        h);
+    12 +  return router;
+    13 +};
+
+  └ src/services/authService.ts (+150
+  -0)
+      1 +import bcrypt from 'bcryptjs
+         ';
+      2 +import crypto from 'node:cry
+         pto';
+      3 +import jwt, { JwtPayload, Si
+         gnOptions } from 'jsonwebtok
+         en';
+      4 +
+      5 +export type Role = 'user' |
+         'admin';
+      6 +
+      7 +export interface AuthUser {
+      8 +  id: string;
+      9 +  email: string;
+     10 +  passwordHash: string;
+     11 +  role: Role;
+     12 +  createdAt?: Date;
+     13 +}
+     14 +
+     15 +/** The data-access contract
+          keeps authentication indepe
+         ndent of the ORM in use. */
+     16 +export interface UserReposit
+         ory {
+     17 +  findByEmail(email: string)
+         : Promise<AuthUser | null>;
+     18 +  findById(id: string): Prom
+         ise<AuthUser | null>;
+     19 +  create(input: Pick<AuthUse
+         r, 'email' | 'passwordHash'
+         | 'role'>): Promise<AuthUser
+         >;
+     20 +}
+     21 +
+     22 +export interface PublicUser
+         {
+     23 +  id: string;
+     24 +  email: string;
+     25 +  role: Role;
+     26 +}
+     27 +
+     28 +export interface AuthTokens
+         {
+     29 +  accessToken: string;
+     30 +  refreshToken: string;
+     31 +  expiresIn: number;
+     32 +}
+     33 +
+     34 +export class AuthError exten
+         ds Error {
+     35 +  constructor(public readonl
+         y statusCode: number, messag
+         e: string) {
+     36 +    super(message);
+     37 +    this.name = 'AuthError';
+     38 +  }
+     39 +}
+     40 +
+     41 +interface TokenClaims extend
+         s JwtPayload {
+     42 +  sub: string;
+     43 +  email: string;
+     44 +  role: Role;
+     45 +  tokenType: 'access' | 'ref
+         resh';
+     46 +}
+     47 +
+     48 +export interface AuthService
+         Options {
+     49 +  jwtSecret?: string;
+     50 +  jwtRefreshSecret?: string;
+     51 +  accessTokenTtl?: string;
+     52 +  refreshTokenTtl?: string;
+     53 +  bcryptRounds?: number;
+     54 +}
+     55 +
+     56 +export class AuthService {
+     57 +  private readonly jwtSecret
+         : string;
+     58 +  private readonly refreshSe
+         cret: string;
+     59 +  private readonly accessTok
+         enTtl: string;
+     60 +  private readonly refreshTo
+         kenTtl: string;
+     61 +  private readonly bcryptRou
+         nds: number;
+     62 +
+     63 +  constructor(private readon
+         ly users: UserRepository, op
+         tions: AuthServiceOptions =
+         {}) {
+     64 +    this.jwtSecret = options
+         .jwtSecret ?? process.env.JW
+         T_SECRET ?? '';
+     65 +    this.refreshSecret = opt
+         ions.jwtRefreshSecret ?? pro
+         cess.env.JWT_REFRESH_SECRET
+         ?? '';
+     66 +    this.accessTokenTtl = op
+         tions.accessTokenTtl ?? proc
+         ess.env.JWT_ACCESS_EXPIRES_I
+         N ?? '15m';
+     67 +    this.refreshTokenTtl = o
+         ptions.refreshTokenTtl ?? pr
+         ocess.env.JWT_REFRESH_EXPIRE
+         S_IN ?? '7d';
+     68 +    this.bcryptRounds = opti
+         ons.bcryptRounds ?? Number(p
+         rocess.env.BCRYPT_ROUNDS ??
+         12);
+     69 +
+     70 +    if (!this.jwtSecret || !
+         this.refreshSecret) {
+     71 +      throw new Error('JWT_S
+         ECRET and JWT_REFRESH_SECRET
+          must be configured');
+     72 +    }
+     73 +    if (!Number.isInteger(th
+         is.bcryptRounds) || this.bcr
+         yptRounds < 10 || this.bcryp
+         tRounds > 15) {
+     74 +      throw new Error('BCRYP
+         T_ROUNDS must be an integer
+         between 10 and 15');
+     75 +    }
+     76 +  }
+     77 +
+     78 +  async register(email: stri
+         ng, password: string, role:
+         Role = 'user'): Promise<{ us
+         er: PublicUser; tokens: Auth
+         Tokens }> {
+     79 +    const normalizedEmail =
+         this.normalizeEmail(email);
+     80 +    this.validatePassword(pa
+         ssword);
+     81 +    if (role !== 'user' && r
+         ole !== 'admin') throw new A
+         uthError(400, 'Invalid role'
+         );
+     82 +    if (await this.users.fin
+         dByEmail(normalizedEmail)) t
+         hrow new AuthError(409, 'Ema
+         il is already registered');
+     83 +
+     84 +    const passwordHash = awa
+         it bcrypt.hash(password, thi
+         s.bcryptRounds);
+     85 +    const user = await this.
+         users.create({ email: normal
+         izedEmail, passwordHash, rol
+         e });
+     86 +    return { user: this.toPu
+         blicUser(user), tokens: this
+         .issueTokens(user) };
+     87 +  }
+     88 +
+     89 +  async login(email: string,
+          password: string): Promise<
+         { user: PublicUser; tokens:
+         AuthTokens }> {
+     90 +    const user = await this.
+         users.findByEmail(this.norma
+         lizeEmail(email));
+     91 +    // Always run bcrypt to
+         make unknown-user and bad-pa
+         ssword responses comparable
+         in timing.
+     92 +    const passwordMatches =
+         await bcrypt.compare(passwor
+         d, user?.passwordHash ?? '$2
+         a$12$invalidinvalidinvalidin
+         validinvalidinvalidinvalidin
+         validinva');
+     93 +    if (!user || !passwordMa
+         tches) throw new AuthError(4
+         01, 'Invalid email or passwo
+         rd');
+     94 +    return { user: this.toPu
+         blicUser(user), tokens: this
+         .issueTokens(user) };
+     95 +  }
+     96 +
+     97 +  async refresh(refreshToken
+         : string): Promise<AuthToken
+         s> {
+     98 +    const claims = this.veri
+         fyToken(refreshToken, this.r
+         efreshSecret, 'refresh');
+     99 +    const user = await this.
+         users.findById(claims.sub);
+    100 +    if (!user) throw new Aut
+         hError(401, 'Refresh token i
+         s no longer valid');
+    101 +    return this.issueTokens(
+         user);
+    102 +  }
+    103 +
+    104 +  verifyAccessToken(token: s
+         tring): TokenClaims {
+    105 +    return this.verifyToken(
+         token, this.jwtSecret, 'acce
+         ss');
+    106 +  }
+    107 +
+    108 +  private issueTokens(user:
+         AuthUser): AuthTokens {
+    109 +    const baseClaims = { ema
+         il: user.email, role: user.r
+         ole };
+    110 +    const accessToken = jwt.
+         sign({ ...baseClaims, tokenT
+         ype: 'access' }, this.jwtSec
+         ret, {
+    111 +      subject: user.id, expi
+         resIn: this.accessTokenTtl a
+         s SignOptions['expiresIn'],
+         issuer: 'rest-api', audience
+         : 'rest-api-client', jwtid:
+         crypto.randomUUID(),
+    112 +    });
+    113 +    const refreshToken = jwt
+         .sign({ ...baseClaims, token
+         Type: 'refresh' }, this.refr
+         eshSecret, {
+    114 +      subject: user.id, expi
+         resIn: this.refreshTokenTtl
+         as SignOptions['expiresIn'],
+          issuer: 'rest-api', audienc
+         e: 'rest-api-client', jwtid:
+          crypto.randomUUID(),
+    115 +    });
+    116 +    return { accessToken, re
+         freshToken, expiresIn: this.
+         durationToSeconds(this.acces
+         sTokenTtl) };
+    117 +  }
+    118 +
+    119 +  private verifyToken(token:
+          string, secret: string, tok
+         enType: TokenClaims['tokenTy
+         pe']): TokenClaims {
+    120 +    try {
+    121 +      const decoded = jwt.ve
+         rify(token, secret, { issuer
+         : 'rest-api', audience: 'res
+         t-api-client' });
+    122 +      if (typeof decoded ===
+          'string' || decoded.tokenTy
+         pe !== tokenType || !decoded
+         .sub || !decoded.email || !d
+         ecoded.role) throw new Error
+         ('Invalid claims');
+    123 +      return decoded as Toke
+         nClaims;
+    124 +    } catch {
+    125 +      throw new AuthError(40
+         1, 'Invalid or expired token
+         ');
+    126 +    }
+    127 +  }
+    128 +
+    129 +  private normalizeEmail(ema
+         il: string): string {
+    130 +    const normalized = typeo
+         f email === 'string' ? email
+         .trim().toLowerCase() : '';
+    131 +    if (!/^[^\s@]+@[^\s@]+\.
+         [^\s@]+$/.test(normalized) |
+         | normalized.length > 254) t
+         hrow new AuthError(400, 'A v
+         alid email is required');
+    132 +    return normalized;
+    133 +  }
+    134 +
+    135 +  private validatePassword(p
+         assword: string): void {
+    136 +    if (typeof password !==
+         'string' || password.length
+         < 12 || password.length > 12
+         8) {
+    137 +      throw new AuthError(40
+         0, 'Password must be between
+          12 and 128 characters');
+    138 +    }
+    139 +  }
+    140 +
+    141 +  private toPublicUser(user:
+          AuthUser): PublicUser {
+    142 +    return { id: user.id, em
+         ail: user.email, role: user.
+         role };
+    143 +  }
+    144 +
+    145 +  private durationToSeconds(
+         ttl: string): number {
+    146 +    const match = /^(\d+)\s*
+         ([smhd])$/.exec(ttl);
+    147 +    if (!match) return 900;
+    148 +    return Number(match[1])
+         * ({ s: 1, m: 60, h: 3600, d
+         : 86400 } as Record<string,
+         number>)[match[2]];
+    149 +  }
+    150 +}
+
+■ Conversation interrupted - tell the
+model what to do differently.
+Something went wrong? Hit `/feedback`
+to report the issue.
+^C
+
+
+
+

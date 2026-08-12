@@ -1,0 +1,813 @@
+
+╭─────────────────────────────────────────────────╮
+│ ✨ Update available! 0.144.4 -> 0.147.0         │
+│ Run npm install -g @openai/codex to update.     │
+│                                                 │
+│ See full release notes:                         │
+│ https://github.com/openai/codex/releases/latest │
+╰─────────────────────────────────────────────────╯
+
+╭────────────────────────────────────────────────────
+╮
+│ >_ OpenAI Codex (v0.144.4)
+│
+│
+│
+│ model:     gpt-5.6-terra medium   /model to change
+│
+│ directory: /vault/Projects/…/workspace/codex
+│
+╰────────────────────────────────────────────────────
+╯
+
+  Tip: New For a limited time, Codex is included in
+  your plan for free – let’s build together.
+
+
+› # Codex Agent Operating Instructions
+
+  ## Identity
+  You are OpenAI Codex CLI, a code-generation and
+  review agent powered by OpenAI's models.
+
+  ## Operating Mode
+  You are being invoked by the Athena Meta-
+  Orchestrator as part of a multi-agent project.
+
+  You have been assigned specific tasks. Focus
+  exclusively on your assigned work.
+
+  ## Rules
+  1. Work ONLY within your assigned workspace
+  directory. Do not create files outside of it.
+  2. Read your task assignment carefully before
+  starting.
+  3. Implement your assigned tasks completely and
+  correctly.
+  4. Focus on code quality, security, and
+  correctness.
+  5. Review your own output for bugs,
+  vulnerabilities, and edge cases.
+  6. Include appropriate tests.
+  7. Do NOT modify files in other agents'
+  workspaces.
+  8. When finished, ensure all expected output files
+  exist in your workspace.
+
+  ## Strengths
+  You excel at:
+  - Code review and refactoring
+  - Security analysis
+  - Test generation
+  - Bug detection
+
+  ## Completion
+  When your tasks are complete:
+  1. Verify all expected outputs exist.
+  2. Run any applicable tests.
+  3. Exit cleanly.
+
+  ## Error Handling
+  If you encounter an error:
+  1. Log the error clearly.
+  2. Attempt to fix it.
+  3. If unable to fix, document the issue and exit.
+
+  ## Workspace
+  All your work must be saved inside your assigned
+  workspace path.
+  Do not write to /tmp, /home, or any location
+  outside your workspace.
+
+
+  ---
+
+  # Your Assignment
+
+  # Task Assignment: codex
+
+  **Project:** _REST_API_Project
+  **Session ID:** 2026-08-12-d309
+  **Workspace:** /vault/Projects/
+  Athena/.orchestrator/sessions/2026-08-12-d309/
+  workspace/codex
+
+  ## Role Description
+  You are responsible for completing the tasks
+  listed below. Work strictly within your assigned
+  workspace.
+
+  ## Assigned Tasks
+
+  ### Task T003: Authentication and Security
+  Implementation
+  **Description:** Implement secure user
+  authentication using JWT and bcrypt for password
+  hashing. Create authentication middleware,
+  implement rate limiting, and configure secure HTTP
+  headers (Helmet/CORS). Ensure proper protection
+  against common vulnerabilities.
+  **Dependencies:** T002
+  **Expected Outputs:**
+  - src/controllers/auth.controller.ts
+  - src/services/auth.service.ts
+  - src/middleware/auth.middleware.ts
+  - src/utils/jwt.util.ts
+
+  ### Task T005: Validation and Centralized Error
+  Handling
+  **Description:** Implement centralized error
+  handling middleware to format consistent JSON
+  error responses. Implement request body and
+  parameter validation using a library like Zod or
+  Joi to validate all incoming API requests.
+  **Dependencies:** T004
+  **Expected Outputs:**
+  - src/middleware/error.middleware.ts
+  - src/validators/auth.validator.ts
+  - src/validators/task.validator.ts
+  - src/utils/customError.ts
+
+  ## Allowed Workspace Path
+  All files must be created within: /vault/Projects/
+  Athena/.orchestrator/sessions/2026-08-12-d309/
+  workspace/codex
+
+  ## Completion Criteria
+  1. All expected outputs are present and correct.
+  2. Code compiles and runs without errors.
+  3. Exit cleanly upon finishing.
+
+
+  ---
+
+  # Current Task
+
+  ## Authentication and Security Implementation
+
+  Implement secure user authentication using JWT and
+  bcrypt for password hashing. Create authentication
+  middleware, implement rate limiting, and configure
+  secure HTTP headers (Helmet/CORS). Ensure proper
+  protection against common vulnerabilities.
+
+  ## Workspace
+
+  Work inside: /vault/Projects/Athena/.orchestrator/
+  sessions/2026-08-12-d309/workspace/codex
+
+
+• I’ll inspect the existing API structure and
+  dependencies, then implement authentication and its
+  security middleware in the project’s established
+  style.
+
+• Ran pwd && rg --files -g '!*node_modules*' -g '!
+  │ *.lock' | sed -n '1,220p'
+  └ /vault/Projects/Athena/.orchestrator/
+    sessions/2026-08-12-d309/workspace/codex
+
+• Explored
+  └ List ls -la
+    List .
+
+─────────────────────────────────────────────────────
+
+• The workspace is currently empty, so I’m creating a
+  small, self-contained TypeScript foundation around
+  the requested modules. It will use explicit
+  repository interfaces rather than assuming a
+  database layer that is not present.
+
+• Edited 10 files (+259 -0)
+  └ package.json (+24 -0)
+     1 +{
+     2 +  "name": "rest-api-project",
+     3 +  "private": true,
+     4 +  "version": "1.0.0",
+     5 +  "scripts": {
+     6 +    "typecheck": "tsc --noEmit"
+     7 +  },
+     8 +  "dependencies": {
+     9 +    "bcryptjs": "^2.4.3",
+    10 +    "cors": "^2.8.5",
+    11 +    "express": "^4.21.2",
+    12 +    "express-rate-limit": "^7.5.0",
+    13 +    "helmet": "^8.0.0",
+    14 +    "jsonwebtoken": "^9.0.2",
+    15 +    "zod": "^3.24.2"
+    16 +  },
+    17 +  "devDependencies": {
+    18 +    "@types/bcryptjs": "^2.4.6",
+    19 +    "@types/cors": "^2.8.17",
+    20 +    "@types/express": "^5.0.1",
+    21 +    "@types/jsonwebtoken": "^9.0.9",
+    22 +    "typescript": "^5.7.3"
+    23 +  }
+    24 +}
+
+  └ src/controllers/auth.controller.ts (+22 -0)
+     1 +import type { Request, Response, NextFunction
+         } from 'express';
+     2 +import type { AuthService } from '../services
+        /auth.service.js';
+     3 +
+     4 +type Credentials = { email: string; password:
+         string };
+     5 +
+     6 +export class AuthController {
+     7 +  constructor(private readonly authService: A
+        uthService) {}
+     8 +
+     9 +  register = async (req: Request<unknown, unk
+        nown, Credentials>, res: Response, next: Next
+        Function): Promise<void> => {
+    10 +    try {
+    11 +      const result = await this.authService.r
+        egister(req.body.email, req.body.password);
+    12 +      res.status(201).json({ data: result });
+    13 +    } catch (error) { next(error); }
+    14 +  };
+    15 +
+    16 +  login = async (req: Request<unknown, unknow
+        n, Credentials>, res: Response, next: NextFun
+        ction): Promise<void> => {
+    17 +    try {
+    18 +      const result = await this.authService.l
+        ogin(req.body.email, req.body.password);
+    19 +      res.status(200).json({ data: result });
+    20 +    } catch (error) { next(error); }
+    21 +  };
+    22 +}
+
+  └ src/middleware/auth.middleware.ts (+55 -0)
+     1 +import type { NextFunction, Request, Response
+        , RequestHandler } from 'express';
+     2 +import cors, { type CorsOptions } from 'cors'
+        ;
+     3 +import rateLimit from 'express-rate-limit';
+     4 +import helmet from 'helmet';
+     5 +import { verifyAccessToken } from '../utils/j
+        wt.util.js';
+     6 +import { CustomError } from '../utils/customE
+        rror.js';
+     7 +
+     8 +declare global {
+     9 +  namespace Express {
+    10 +    interface Request {
+    11 +      auth?: { userId: string; email: string
+        };
+    12 +    }
+    13 +  }
+    14 +}
+    15 +
+    16 +export const requireAuth = (req: Request, _re
+        s: Response, next: NextFunction): void => {
+    17 +  const [scheme, token] = req.get('authorizat
+        ion')?.split(/\s+/) ?? [];
+    18 +  if (scheme !== 'Bearer' || !token) return n
+        ext(new CustomError(401, 'Bearer authenticati
+        on is required.', 'AUTH_REQUIRED'));
+    19 +  try {
+    20 +    const payload = verifyAccessToken(token);
+    21 +    req.auth = { userId: payload.sub, email:
+        payload.email };
+    22 +    next();
+    23 +  } catch (error) {
+    24 +    next(error);
+    25 +  }
+    26 +};
+    27 +
+    28 +export const authenticationRateLimiter = rate
+        Limit({
+    29 +  windowMs: 15 * 60 * 1000,
+    30 +  limit: 10,
+    31 +  standardHeaders: 'draft-8',
+    32 +  legacyHeaders: false,
+    33 +  message: { error: { code: 'RATE_LIMITED', m
+        essage: 'Too many authentication attempts. Pl
+        ease try again later.' } }
+    34 +});
+    35 +
+    36 +export const apiRateLimiter = rateLimit({
+    37 +  windowMs: 15 * 60 * 1000,
+    38 +  limit: 300,
+    39 +  standardHeaders: 'draft-8',
+    40 +  legacyHeaders: false
+    41 +});
+    42 +
+    43 +export const createSecurityMiddleware = (allo
+        wedOrigins: string[] = []): RequestHandler[]
+        => {
+    44 +  const corsOptions: CorsOptions = {
+    45 +    origin(origin, callback) {
+    46 +      if (!origin || allowedOrigins.includes(
+        origin)) return callback(null, true);
+    47 +      callback(new CustomError(403, 'Origin i
+        s not allowed by CORS policy.', 'CORS_DENIED'
+        ));
+    48 +    },
+    49 +    credentials: true,
+    50 +    methods: ['GET', 'POST', 'PUT', 'PATCH',
+        'DELETE', 'OPTIONS'],
+    51 +    allowedHeaders: ['Authorization', 'Conten
+        t-Type'],
+    52 +    maxAge: 86400
+    53 +  };
+    54 +  return [helmet(), cors(corsOptions), apiRat
+        eLimiter];
+    55 +};
+
+  └ src/middleware/error.middleware.ts (+15 -0)
+     1 +import type { ErrorRequestHandler, RequestHan
+        dler } from 'express';
+     2 +import { ZodError } from 'zod';
+     3 +import { CustomError } from '../utils/customE
+        rror.js';
+     4 +
+     5 +export const notFoundHandler: RequestHandler
+        = (req, _res, next) =>
+     6 +  next(new CustomError(404, `Route ${req.meth
+        od} ${req.originalUrl} was not found.`, 'NOT_
+        FOUND'));
+     7 +
+     8 +export const errorHandler: ErrorRequestHandle
+        r = (error, _req, res, _next) => {
+     9 +  if (error instanceof ZodError) {
+    10 +    return res.status(400).json({ error: { co
+        de: 'VALIDATION_ERROR', message: 'Request val
+        idation failed.', details: error.flatten() }
+        });
+    11 +  }
+    12 +  const known = error instanceof CustomError
+        ? error : new CustomError(500, 'An unexpected
+         error occurred.');
+    13 +  if (known.statusCode >= 500) console.error(
+        error);
+    14 +  return res.status(known.statusCode).json({
+        error: { code: known.code, message: known.mes
+        sage, ...(known.details === undefined ? {} :
+        { details: known.details }) } });
+    15 +};
+
+  └ src/services/auth.service.ts (+55 -0)
+     1 +import bcrypt from 'bcryptjs';
+     2 +import { CustomError } from '../utils/customE
+        rror.js';
+     3 +import { signAccessToken } from '../utils/jwt
+        .util.js';
+     4 +
+     5 +export interface UserRecord {
+     6 +  id: string;
+     7 +  email: string;
+     8 +  passwordHash: string;
+     9 +  createdAt?: Date;
+    10 +}
+    11 +
+    12 +export interface UserRepository {
+    13 +  findByEmail(email: string): Promise<UserRec
+        ord | null>;
+    14 +  create(input: { email: string; passwordHash
+        : string }): Promise<UserRecord>;
+    15 +}
+    16 +
+    17 +export interface PublicUser {
+    18 +  id: string;
+    19 +  email: string;
+    20 +  createdAt?: Date;
+    21 +}
+    22 +
+    23 +export interface AuthResult {
+    24 +  user: PublicUser;
+    25 +  accessToken: string;
+    26 +}
+    27 +
+    28 +const BCRYPT_ROUNDS = 12;
+    29 +// Equalizes the "unknown user" login path en
+        ough to avoid revealing account existence by
+        timing.
+    30 +const DUMMY_HASH = '$2a$12$7CXUc5YFaqNtQ6iE.2
+        xNIubGawDE.rSBg1LqCVcb3qawq1nUMTVw2';
+    31 +
+    32 +const publicUser = ({ id, email, createdAt }:
+         UserRecord): PublicUser => ({ id, email, cre
+        atedAt });
+    33 +
+    34 +export class AuthService {
+    35 +  constructor(private readonly users: UserRep
+        ository) {}
+    36 +
+    37 +  async register(email: string, password: str
+        ing): Promise<AuthResult> {
+    38 +    const normalizedEmail = email.trim().toLo
+        werCase();
+    39 +    if (await this.users.findByEmail(normaliz
+        edEmail)) {
+    40 +      throw new CustomError(409, 'An account
+        with this email already exists.', 'EMAIL_ALRE
+        ADY_REGISTERED');
+    41 +    }
+    42 +    const passwordHash = await bcrypt.hash(pa
+        ssword, BCRYPT_ROUNDS);
+    43 +    const user = await this.users.create({ em
+        ail: normalizedEmail, passwordHash });
+    44 +    return { user: publicUser(user), accessTo
+        ken: signAccessToken({ sub: user.id, email: u
+        ser.email }) };
+    45 +  }
+    46 +
+    47 +  async login(email: string, password: string
+        ): Promise<AuthResult> {
+    48 +    const user = await this.users.findByEmail
+        (email.trim().toLowerCase());
+    49 +    const passwordMatches = await bcrypt.comp
+        are(password, user?.passwordHash ?? DUMMY_HAS
+        H);
+    50 +    if (!user || !passwordMatches) {
+    51 +      throw new CustomError(401, 'Invalid ema
+        il or password.', 'INVALID_CREDENTIALS');
+    52 +    }
+    53 +    return { user: publicUser(user), accessTo
+        ken: signAccessToken({ sub: user.id, email: u
+        ser.email }) };
+    54 +  }
+    55 +}
+
+  └ src/utils/customError.ts (+15 -0)
+     1 +export class CustomError extends Error {
+     2 +  public readonly statusCode: number;
+     3 +  public readonly code: string;
+     4 +  public readonly details?: unknown;
+     5 +  public readonly isOperational = true;
+     6 +
+     7 +  constructor(statusCode: number, message: st
+        ring, code = 'INTERNAL_ERROR', details?: unkn
+        own) {
+     8 +    super(message);
+     9 +    this.name = 'CustomError';
+    10 +    this.statusCode = statusCode;
+    11 +    this.code = code;
+    12 +    this.details = details;
+    13 +    Error.captureStackTrace?.(this, CustomErr
+        or);
+    14 +  }
+    15 +}
+
+  └ src/utils/jwt.util.ts (+40 -0)
+     1 +import jwt, { JwtPayload, SignOptions } from
+        'jsonwebtoken';
+     2 +import { CustomError } from './customError.js
+        ';
+     3 +
+     4 +export interface AccessTokenPayload extends J
+        wtPayload {
+     5 +  sub: string;
+     6 +  email: string;
+     7 +}
+     8 +
+     9 +const getJwtSecret = (): string => {
+    10 +  const secret = process.env.JWT_SECRET;
+    11 +  if (!secret || secret.length < 32) {
+    12 +    throw new CustomError(500, 'JWT_SECRET mu
+        st be set to at least 32 characters.', 'JWT_C
+        ONFIGURATION_ERROR');
+    13 +  }
+    14 +  return secret;
+    15 +};
+    16 +
+    17 +const getExpiration = (): NonNullable<SignOpt
+        ions['expiresIn']> =>
+    18 +  (process.env.JWT_EXPIRES_IN as NonNullable<
+        SignOptions['expiresIn']>) || '15m';
+    19 +
+    20 +export const signAccessToken = (payload: Pick
+        <AccessTokenPayload, 'sub' | 'email'>): strin
+        g =>
+    21 +  jwt.sign(payload, getJwtSecret(), {
+    22 +    algorithm: 'HS256',
+    23 +    expiresIn: getExpiration(),
+    24 +    issuer: process.env.JWT_ISSUER || 'rest-a
+        pi',
+    25 +    audience: process.env.JWT_AUDIENCE || 're
+        st-api-clients'
+    26 +  });
+    27 +
+    28 +export const verifyAccessToken = (token: stri
+        ng): AccessTokenPayload => {
+    29 +  try {
+    30 +    const decoded = jwt.verify(token, getJwtS
+        ecret(), {
+    31 +      algorithms: ['HS256'],
+    32 +      issuer: process.env.JWT_ISSUER || 'rest
+        -api',
+    33 +      audience: process.env.JWT_AUDIENCE || '
+        rest-api-clients'
+    34 +    });
+    35 +    if (typeof decoded === 'string' || !decod
+        ed.sub || !decoded.email) throw new Error('In
+        valid claims');
+    36 +    return decoded as AccessTokenPayload;
+    37 +  } catch {
+    38 +    throw new CustomError(401, 'Invalid or ex
+        pired access token.', 'INVALID_TOKEN');
+    39 +  }
+    40 +};
+
+  └ src/validators/auth.validator.ts (+7 -0)
+    1 +import { z } from 'zod';
+    2 +
+    3 +const email = z.string().trim().email().max(25
+       4).transform((value) => value.toLowerCase());
+    4 +const password = z.string().min(12, 'Password
+       must contain at least 12 characters.').max(128
+       );
+    5 +
+    6 +export const registerSchema = z.object({ email
+       , password });
+    7 +export const loginSchema = z.object({ email, p
+       assword: z.string().min(1).max(128) });
+
+  └ src/validators/task.validator.ts (+13 -0)
+     1 +import { z } from 'zod';
+     2 +
+     3 +const taskId = z.object({ id: z.string().uuid
+        () });
+     4 +const taskFields = {
+     5 +  title: z.string().trim().min(1).max(200),
+     6 +  description: z.string().trim().max(5000).op
+        tional(),
+     7 +  completed: z.boolean().optional(),
+     8 +  dueDate: z.string().datetime({ offset: true
+         }).optional()
+     9 +};
+    10 +
+    11 +export const taskParamsSchema = taskId;
+    12 +export const createTaskSchema = z.object({ ti
+        tle: taskFields.title, description: taskField
+        s.description, dueDate: taskFields.dueDate })
+        ;
+    13 +export const updateTaskSchema = z.object(task
+        Fields).partial().refine((value) => Object.ke
+        ys(value).length > 0, 'At least one field is
+        required.');
+
+  └ tsconfig.json (+13 -0)
+     1 +{
+     2 +  "compilerOptions": {
+     3 +    "target": "ES2022",
+     4 +    "module": "NodeNext",
+     5 +    "moduleResolution": "NodeNext",
+     6 +    "strict": true,
+     7 +    "esModuleInterop": true,
+     8 +    "skipLibCheck": true,
+     9 +    "forceConsistentCasingInFileNames": true,
+    10 +    "noUncheckedIndexedAccess": true
+    11 +  },
+    12 +  "include": ["src/**/*.ts"]
+    13 +}
+
+─────────────────────────────────────────────────────
+
+• The core modules are in place. I’m now running a
+  compile check and tightening the validation
+  integration so the schemas can be applied
+  consistently to route bodies, parameters, and query
+  strings.
+
+• Edited src/middleware/error.middleware.ts (+11 -1)
+     1  import type { ErrorRequestHandler, RequestHan
+        dler } from 'express';
+     2 -import { ZodError } from 'zod';
+     2 +import { ZodError, type ZodType } from 'zod';
+     3  import { CustomError } from '../utils/customE
+        rror.js';
+       ⋮
+     7
+     8 +/** Validates one request location and replac
+        es it with Zod's sanitized output. */
+     9 +export const validate = <T>(schema: ZodType<T
+        >, location: 'body' | 'params' | 'query' = 'b
+        ody'): RequestHandler =>
+    10 +  (req, _res, next) => {
+    11 +    const result = schema.safeParse(req[locat
+        ion]);
+    12 +    if (!result.success) return next(result.e
+        rror);
+    13 +    // Express's Request types make these loc
+        ations readonly-ish, but Express permits assi
+        gning them at runtime.
+    14 +    Object.assign(req[location], result.data)
+        ;
+    15 +    return next();
+    16 +  };
+    17 +
+    18  export const errorHandler: ErrorRequestHandle
+        r = (error, _req, res, _next) => {
+
+■ Conversation interrupted - tell the model what to
+do differently. Something went wrong? Hit `/feedback`
+to report the issue.
+Token usage: total=15,625 input=11,167 (+ 87,552 cached) output=4,458 (reasoning 490)
+To continue this session, run codex resume 019ff601-3fb3-7343-916c-321f6ce629ab
+> Task: Validation and Centralized Error Handling
+> You are in /vault/Projects/Athena/.orchestrator/ses
+
+  Do you trust the contents of this directory?
+  Working with untrusted contents comes with higher
+  risk of prompt injection. Trusting the directory
+  allows project-local config, hooks, and exec
+  policies to load.
+
+› 1. Yes, continue
+  2. No, quit
+
+  Press enter to continue
+
+╭─────────────────────────────────────────────────╮
+│ ✨ Update available! 0.144.4 -> 0.147.0         │
+│ Run npm install -g @openai/codex to update.     │
+│                                                 │
+│ See full release notes:                         │
+│ https://github.com/openai/codex/releases/latest │
+╰─────────────────────────────────────────────────╯
+
+⚠ Project-local config, hooks, and exec policies are
+  disabled in the following folders until the project
+  is trusted, but skills still load.
+      1. /vault/Projects/Athena/.orchestrator/
+  sessions/2026-08-12-d309/workspace/codex/.codex
+         To load project-local config, hooks, and
+  exec policies, add /vault/Projects/
+  Athena/.orchestrator/sessions/2026-08-12-d309/
+  workspace/codex as a trusted project in /home/
+  c1ph3r/.codex/config.toml.
+
+╭────────────────────────────────────────────────────
+╮
+│ >_ OpenAI Codex (v0.144.4)
+│
+│
+│
+│ model:     gpt-5.6-terra medium   /model to change
+│
+│ directory: /vault/Projects/…/workspace/codex
+│
+╰────────────────────────────────────────────────────
+╯
+
+  To get started, describe a task or try one of these
+  commands:
+
+  /init - create an AGENTS.md file with instructions
+  for Codex
+  /status - show current session configuration
+  /permissions - choose what Codex is allowed to do
+  /model - choose what model and reasoning effort to
+  use
+  /review - review any changes and find issues
+
+
+› # Codex Agent Operating Instructions
+
+  ## Identity
+  You are OpenAI Codex CLI, a code-generation and
+  review agent powered by OpenAI's models.
+
+  ## Operating Mode
+  You are being invoked by the Athena Meta-
+  Orchestrator as part of a multi-agent project.
+
+  You have been assigned specific tasks. Focus
+  exclusively on your assigned work.
+
+  ## Rules
+  1. Work ONLY within your assigned workspace
+  directory. Do not create files outside of it.
+  2. Read your task assignment carefully before
+  starting.
+  3. Implement your assigned tasks completely and
+  correctly.
+  4. Focus on code quality, security, and
+  correctness.
+  5. Review your own output for bugs,
+  vulnerabilities, and edge cases.
+  6. Include appropriate tests.
+  7. Do NOT modify files in other agents'
+  workspaces.
+  8. When finished, ensure all expected output files
+  exist in your workspace.
+
+  ## Strengths
+  You excel at:
+  - Code review and refactoring
+  - Security analysis
+  - Test generation
+  - Bug detection
+
+  ## Completion
+  When your tasks are complete:
+  1. Verify all expected outputs exist.
+  2. Run any applicable tests.
+  3. Exit cleanly.
+
+  ## Error Handling
+  If you encounter an error:
+  1. Log the error clearly.
+  2. Attempt to fix it.
+  3. If unable to fix, document the issue and exit.
+
+  ## Workspace
+  All your work must be saved inside your assigned
+  workspace path.
+  Do not write to /tmp, /home, or any location
+  outside your workspace.
+
+
+  ---
+
+  # Your Assignment
+
+  # Task Assignment: codex
+
+  **Project:** _REST_API_Project
+  **Session ID:** 2026-08-12-d309
+  **Workspace:** /vault/Projects/
+  Athena/.orchestrator/sessions/2026-08-12-d309/
+  workspace/codex
+
+  ## Role Description
+  You are responsible for completing the tasks
+  listed below. Work strictly within your assigned
+  workspace.
+
+  ## Assigned Tasks
+
+  ### Task T003: Authentication and Security
+  Implementation
+  **Description:** Implement secure user
+  authentication using JWT and bcrypt for password
+  hashing. Create authentication middleware,
+  implement rate limiting, and configure secure HTTP
+  headers (Helmet/CORS). Ensure proper protection
+  against common vulnerabilities.
+  **Dependencies:** T002
+  **Expected Outputs:**
+  - src/controllers/auth.controller.ts
+  - src/services/auth.service.ts
+  - src/middleware/auth.middleware.ts
+  - src/utils/jwt.util.ts
+
+  ### Task T005: Validation and Centralized Error
+  Handling
+  **Description:** Implement centralized error
+  handling middleware to format consistent JSON
+  error responses. Implement request body and
+  parameter validation using a library like Zod or
+  Joi to validate all incoming API requests.
+  **Dependencies:** T004
+  **Expected Outputs:**
+  - src/middleware/error.middleware.ts
+  - src/validators/auth.validator.ts
+  - src/validators/task.validator.ts
+  - src/utils/customError.ts
+
+  ## Allowed Workspace Path
+  All files must be created within: /vault/Projects/
+  Athena/.orchestrator/sessions/2026-08-12-d309/
+  workspace/codex
+
+  ## Completion Criteria
+  1. All expected outputs are present and correct.
+  2. Code compiles and runs without errors.
+  3. Exit cleanly upon finishing.
+
+
+  ---
+
+  # Current Task
+
+  ## Validation and Centralized Error Handling
+
+  Implement centralized error handling middleware to
+  format consistent JSON error responses. Implement
+  request body and parameter validation using a
+  library like Zod or Joi to validate all incoming
+  API requests.
+
+  ## Workspace
+
+  Work inside: /vault/Projects/Athena/.orchestrator/
+  sessions/2026-08-12-d309/workspace/codex
+
+
+■ Conversation interrupted - tell the model what to
+do differently. Something went wrong? Hit `/feedback`
+to report the issue.
+
+⚠ MCP startup interrupted. The following servers were
+  not initialized: codex_apps
+^C
+
+
+
+

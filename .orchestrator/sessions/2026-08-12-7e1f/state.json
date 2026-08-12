@@ -1,0 +1,90 @@
+{
+  "session_id": "2026-08-12-7e1f",
+  "project_name": "Build_a_lightweight_Markdown",
+  "objective": "Build a lightweight Markdown to HTML converter in Python.\n\nI need three distinct components built:\n1. **Core Parser Module**: A Python file containing the logic to convert basic Markdown (headers, bold, italics, and lists) into HTML strings.\n2. **CLI Wrapper**: A separate Python script using `argparse` that reads an input `.md` file, passes it to the core parser module, and writes the output to a `.html` file.\n3. **Test Suite**: A `pytest` file that contains comprehensive unit tests for the core parser module to ensure the Markdown conversions are accurate.\n\n*Note for the Orchestrator: Please break this down into at least 3 distinct tasks so they can be assigned to different agents in parallel or sequence as appropriate.*\n",
+  "tasks": [
+    {
+      "id": "T001",
+      "title": "Build Core Parser Module",
+      "description": "Develop a Python module containing the core logic to convert basic Markdown elements (headers, bold, italics, and lists) into corresponding HTML strings. The module should expose a clean API (e.g., a `parse_markdown` function) that takes a Markdown string and returns an HTML string.",
+      "status": "Pending",
+      "assigned_agent": "codex",
+      "capabilities_required": {},
+      "token_budget": null,
+      "dependencies": [],
+      "process_id": null,
+      "start_time": null,
+      "end_time": null,
+      "exit_code": null,
+      "token_usage": null,
+      "workspace": null,
+      "prompt_file": null,
+      "output_file": null,
+      "expected_outputs": [
+        "parser.py"
+      ],
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "id": "T002",
+      "title": "Develop CLI Wrapper",
+      "description": "Create a Python script using the `argparse` module that serves as a command-line interface. It should accept an input `.md` file path and an optional output `.html` file path, read the input file, pass its contents to the core parser module, and write the resulting HTML to the output file.",
+      "status": "Pending",
+      "assigned_agent": "agy",
+      "capabilities_required": {},
+      "token_budget": null,
+      "dependencies": [
+        "T001"
+      ],
+      "process_id": null,
+      "start_time": null,
+      "end_time": null,
+      "exit_code": null,
+      "token_usage": null,
+      "workspace": null,
+      "prompt_file": null,
+      "output_file": null,
+      "expected_outputs": [
+        "cli.py"
+      ],
+      "result": null,
+      "error": null,
+      "logs": []
+    },
+    {
+      "id": "T003",
+      "title": "Implement Test Suite",
+      "description": "Write a comprehensive test suite using `pytest` to verify the accuracy of the Markdown conversions performed by the core parser module. The tests should cover all supported Markdown elements (headers, bold, italics, lists) and handle edge cases gracefully.",
+      "status": "Pending",
+      "assigned_agent": "agy",
+      "capabilities_required": {},
+      "token_budget": null,
+      "dependencies": [
+        "T001"
+      ],
+      "process_id": null,
+      "start_time": null,
+      "end_time": null,
+      "exit_code": null,
+      "token_usage": null,
+      "workspace": null,
+      "prompt_file": null,
+      "output_file": null,
+      "expected_outputs": [
+        "test_parser.py"
+      ],
+      "result": null,
+      "error": null,
+      "logs": []
+    }
+  ],
+  "agents_used": [
+    "agy",
+    "codex"
+  ],
+  "started_at": "2026-08-12T23:40:09.777422735+05:30",
+  "updated_at": "2026-08-12T23:40:09.777422735+05:30",
+  "phase": "Planning"
+}
