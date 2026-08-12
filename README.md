@@ -17,7 +17,7 @@
 
 <hr />
 
-## 🚀 What Makes Athena Unique?
+## What Makes Athena Unique?
 
 Unlike traditional singular coding assistants, Athena acts as an **Engineering Manager**. It digests massive project descriptions, compiles them into a Directed Acyclic Graph (DAG) of parallel tasks, and dispatches them across a fleet of specialized AI agents (`agy`, `claude`, `codex`) concurrently.
 
@@ -29,7 +29,7 @@ Unlike traditional singular coding assistants, Athena acts as an **Engineering M
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 * **Rust**: The core language, chosen for memory safety, unmatched speed, and phenomenal CLI ecosystem.
 * **Tokio**: The asynchronous runtime powering parallel agent processes, file state polling, and concurrent terminal streams.
@@ -39,7 +39,7 @@ Unlike traditional singular coding assistants, Athena acts as an **Engineering M
 
 ---
 
-## 📁 Architecture & Codebase
+## Architecture & Codebase
 
 ```text
 /athena/
@@ -59,7 +59,7 @@ Unlike traditional singular coding assistants, Athena acts as an **Engineering M
 
 ---
 
-## 🕸️ How the DAG Orchestration Works
+## How the DAG Orchestration Works
 
 When you run `/orch`:
 
@@ -74,7 +74,7 @@ When you run `/orch`:
 
 ---
 
-## 🚧 Challenges Conquered
+## Challenges Conquered
 
 Building a multi-agent orchestrator natively in the terminal introduced severe technical hurdles:
 
@@ -85,7 +85,7 @@ Building a multi-agent orchestrator natively in the terminal introduced severe t
 
 ---
 
-## 📦 Installation & Usage
+## Installation & Usage
 
 ### Prerequisites
 1. [Rust](https://rustup.rs/) (`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`)
