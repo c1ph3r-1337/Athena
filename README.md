@@ -89,7 +89,7 @@ Building a multi-agent orchestrator natively in the terminal introduced severe t
 
 ### Prerequisites
 1. [Rust](https://rustup.rs/) (`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`)
-2. `tmux` (`sudo apt install tmux` or `brew install tmux`)
+2. `tmux` (`sudo apt install tmux`, `brew install tmux`, or `sudo pacman -S tmux`)
 3. At least one AI CLI agent in your path (e.g., `agy`).
 
 ### Installation
