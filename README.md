@@ -12,6 +12,7 @@
     <img src="https://img.shields.io/badge/Runtime-Tokio-yellow?style=for-the-badge" alt="Tokio" />
     <img src="https://img.shields.io/badge/Environment-Tmux-12B548?style=for-the-badge&logo=tmux" alt="Tmux" />
     <img src="https://img.shields.io/badge/AI-Multi--Agent-blue?style=for-the-badge" alt="AI Agents" />
+    <a href="https://github.com/c1ph3r-1337/Athena/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-success?style=for-the-badge" alt="MIT License" /></a>
   </p>
 </div>
 
@@ -110,6 +111,12 @@ cargo install --path athena-cli --force
    ```
    Paste your project prompt, type `EOF` on a new line, and hit enter.
 4. Watch Athena build the plan, launch the tmux grid, and generate your code in parallel!
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ---
 <div align="center">
